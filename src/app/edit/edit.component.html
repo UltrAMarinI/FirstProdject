@@ -1,0 +1,10 @@
+<p>edit works!</p>
+<div class="input">
+  <label>имя продукта</label>
+  <input [(ngModel)]="product.name" />
+  <label>цена продукта</label>
+  <input type="number" [(ngModel)]="product.price" />
+  <button (click)="isEdit ? editProduct() : createProduct()">
+    выполнить
+  </button>
+</div>
