@@ -6,52 +6,68 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  FormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Product } from '../../shared/interfaces/product.interface';
-
-
+import { editServise } from '../../shared/service/services';
 @Component({
   selector: 'app-edit',
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   standalone: true,
+  providers: [editServise],
 })
 export class EditComponent implements OnInit {
   isEdit = true;
+  form!: FormGroup;
 
   product: Product = {
     name: '',
     price: 0,
   };
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private editService: editServise
+  ) {}
 
-  myForm: FormGroup = new FormGroup({
-    nameProduct: new FormControl('', Validators.required),
-    priceProduct: new FormControl('', Validators.required),
-  });
+  onSubmit() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
+  }
 
   ngOnInit(): void {
     let url = this.route.snapshot.url.join('/');
     this.isEdit = url === Urls.Edit ? true : false;
     console.log(this.isEdit);
+
+    this.form = this.editService.editForm();
   }
 
   editProduct() {
-    console.log('редактирую', this.myForm.get('nameProduct')?.value, this.myForm.get('priceProduct')?.value);
+    console.log(
+      'редактирую',
+      this.form.get('nameProduct')?.value,
+      this.form.get('priceProduct')?.value
+    );
   }
 
   createProduct() {
-    console.log('создаю', this.myForm.get('nameProduct')?.value, this.myForm.get('priceProduct')?.value);
+    console.log(
+      'создаю',
+      this.form.get('nameProduct')?.value,
+      this.form.get('priceProduct')?.value
+    );
   }
 
   submit() {
-    console.log(this.myForm);
+    console.log(this.form);
   }
 
   clearForm() {
-    this.myForm.reset();
+    this.editService.clearForm(this.form);
   }
 }

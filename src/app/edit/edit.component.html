@@ -1,18 +1,18 @@
-<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+<form [formGroup]="form" novalidate (ngSubmit)="submit()">
   <div class="input">
     <label>Наименование продукта</label>
     <input formControlName="nameProduct" />
 
-    @if(myForm.controls["nameProduct"].invalid &&
-    myForm.controls["nameProduct"].touched){
+    @if(form.controls["nameProduct"].invalid &&
+    form.controls["nameProduct"].touched){
     <div class="alert">Не указано имя</div>
     }
 
     <label>Стоимость продукта</label>
     <input type="number" formControlName="priceProduct" />
 
-    @if(myForm.controls["priceProduct"].invalid &&
-    myForm.controls["priceProduct"].touched){
+    @if(form.controls["priceProduct"].invalid &&
+    form.controls["priceProduct"].touched){
     <div class="alert">Не указана цена</div>
     }
 <div class="but-flex">
@@ -20,7 +20,7 @@
       class="button"
       (click)="isEdit ? editProduct() : createProduct()"
       type="submit"
-      [disabled]="myForm.invalid"
+      [disabled]="form.invalid"
     >
       Отправить
     </button>
