@@ -1,10 +1,29 @@
-<p>edit works!</p>
-<div class="input">
-  <label>имя продукта</label>
-  <input [(ngModel)]="product.name" />
-  <label>цена продукта</label>
-  <input type="number" [(ngModel)]="product.price" />
-  <button (click)="isEdit ? editProduct() : createProduct()">
-    выполнить
-  </button>
-</div>
+<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+  <div class="input">
+    <label>Наименование продукта</label>
+    <input formControlName="nameProduct" />
+
+    @if(myForm.controls["nameProduct"].invalid &&
+    myForm.controls["nameProduct"].touched){
+    <div class="alert">Не указано имя</div>
+    }
+
+    <label>Стоимость продукта</label>
+    <input type="number" formControlName="priceProduct" />
+
+    @if(myForm.controls["priceProduct"].invalid &&
+    myForm.controls["priceProduct"].touched){
+    <div class="alert">Не указана цена</div>
+    }
+<div class="but-flex">
+    <button
+      class="button"
+      (click)="isEdit ? editProduct() : createProduct()"
+      type="submit"
+      [disabled]="myForm.invalid"
+    >
+      Отправить
+    </button>
+    <button class="button" type="button" (click)="clearForm()">Очистить</button></div>
+  </div>
+</form>

@@ -1,6 +1,40 @@
 .input{
 display: flex;
 flex-direction: column;
+justify-content: center;
 width: 30%;
 line-height: 40px;
+}
+
+.button{
+    width: 150px;
+    height: 35px;
+    color: #849c9d;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 15px;
+    border-radius: 50px;
+    border-color: aqua;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+      background-color: rgb(236, 255, 255);
+      height: 100vh;
+}
+
+label{
+    color: rgb(41, 94, 94);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.alert{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #849c9d;
+}
+
+.but-flex{
+    display: flex;
+    flex-direction: row;
 }
