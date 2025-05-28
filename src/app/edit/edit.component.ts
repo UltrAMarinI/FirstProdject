@@ -4,9 +4,6 @@ import { Urls } from '../../shared/enums/urls.enum';
 import {
   FormsModule,
   FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Product } from '../../shared/interfaces/product.interface';
