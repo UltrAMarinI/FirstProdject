@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Urls } from '../../shared/enums/urls.enum';
-import {
-  FormsModule,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../shared/interfaces/product.interface';
 import { editServise } from '../../shared/service/services';
 @Component({
@@ -19,11 +15,6 @@ import { editServise } from '../../shared/service/services';
 export class EditComponent implements OnInit {
   isEdit = true;
   form!: FormGroup;
-
-  product: Product = {
-    name: '',
-    price: 0,
-  };
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +52,11 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
+    if (this.isEdit) {
+      this.editProduct();
+    } else {
+      this.createProduct();
+    }
     console.log(this.form);
   }
 
