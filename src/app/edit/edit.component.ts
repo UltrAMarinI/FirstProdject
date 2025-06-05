@@ -4,13 +4,14 @@ import { Urls } from '../../shared/enums/urls.enum';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../shared/interfaces/product.interface';
 import { editServise } from '../../shared/service/services';
+import { ApiService } from '../../shared/service/backend.srv';
 @Component({
   selector: 'app-edit',
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   standalone: true,
-  providers: [editServise],
+  providers: [editServise, ApiService],
 })
 export class EditComponent implements OnInit {
   isEdit = true;
@@ -18,7 +19,8 @@ export class EditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private editService: editServise
+    private editService: editServise,
+    private ApiService: ApiService
   ) {}
 
   onSubmit() {
@@ -39,16 +41,17 @@ export class EditComponent implements OnInit {
     console.log(
       'редактирую',
       this.form.get('nameProduct')?.value,
-      this.form.get('priceProduct')?.value
+      this.form.get('descriptionProduct')?.value,
+      this.form.get('dateProduct')?.value
     );
   }
 
   createProduct() {
-    console.log(
-      'создаю',
-      this.form.get('nameProduct')?.value,
-      this.form.get('priceProduct')?.value
-    );
+    this.ApiService.postData({
+      name:  this.form.get('nameProduct')?.value,
+      description:  this.form.get('descriptionProduct')?.value,
+      date:  this.form.get('dateProduct')?.value
+    }).subscribe(res=>console.log('res', res));
   }
 
   submit() {

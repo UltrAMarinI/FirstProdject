@@ -8,7 +8,8 @@ export class editServise {
   editForm(): FormGroup {
     return this.formBuilder.group({
       nameProduct: ['', Validators.required],
-      priceProduct: ['', Validators.required],
+      descriptionProduct: ['', Validators.required],
+      dateProduct: ['', Validators.required]
     });
   }
 
