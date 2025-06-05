@@ -8,13 +8,22 @@
     <div class="alert">Не указано имя</div>
     }
 
-    <label>Стоимость продукта</label>
-    <input type="number" formControlName="priceProduct" />
+    <label>Описание продукта</label>
+    <input type="text" formControlName="descriptionProduct" />
 
-    @if(form.controls["priceProduct"].invalid &&
-    form.controls["priceProduct"].touched){
+    @if(form.controls["descriptionProduct"].invalid &&
+    form.controls["descriptionProduct"].touched){
     <div class="alert">Не указана цена</div>
     }
+
+    <label>Дата</label>
+    <input type="date" formControlName="dateProduct"/>
+
+    @if(form.controls["dateProduct"].invalid &&
+    form.controls["dateProduct"].touched){
+    <div class="alert">Не указана дата</div>
+    }
+
     <div class="but-flex">
       <button class="button" type="submit" [disabled]="form.invalid">
         Отправить
