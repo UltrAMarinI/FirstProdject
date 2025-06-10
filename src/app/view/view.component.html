@@ -1,5 +1,10 @@
+<div class="col">
 @for (item of products; track $index) {
-    <div>{{item.name}}</div>
-    <div>{{item.description}}</div>
-    <div>{{item.date}}</div>
+    <div class="prod">
+    <div class="name">{{item.name}}</div>
+    <div class="description">{{item.description}}</div>
+    <div class="date">{{item.date}}</div>
+    <button class="button" (click)="deleteProduct(item.id)">Удалить</button>
+    </div>
 }
+</div>

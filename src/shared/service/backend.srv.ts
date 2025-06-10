@@ -18,4 +18,8 @@ export class ApiService {
   postData(data: Product): Observable<Product> {
     return this.http.post<Product>(`${this.apiUrl}/entities`, data);
   }
+
+  deleteData(id: number): Observable<Product> { 
+    return this.http.delete<Product>(`${this.apiUrl}/entities/${id}`)
+  }
 }

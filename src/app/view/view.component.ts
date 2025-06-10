@@ -9,17 +9,26 @@ import { Product } from '../../shared/interfaces/product.interface';
   styleUrl: './view.component.scss',
   standalone: true,
 })
-export class ViewComponent  implements OnInit{
-  products: Product[]=[]
+export class ViewComponent implements OnInit {
+  products: Product[] = [];
 
-  constructor(
-    private ApiService: ApiService
-  ) {}
+  constructor(private ApiService: ApiService) {}
 
-ngOnInit(): void {
-  this.ApiService.getData().subscribe(zhopa => {
-    console.log(zhopa)
-    this.products=zhopa
-  })
-}
+  upDate() {
+    this.ApiService.getData().subscribe((a) => {
+      console.log(a);
+      this.products = a;
+    });
+  }
+
+  ngOnInit(): void {
+    this.upDate();
+  }
+
+  deleteProduct(id: number | undefined): void {
+    if (!id) return;
+    this.ApiService.deleteData(id).subscribe(()=>{
+        this.upDate();
+    });
+  }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Urls } from '../../shared/enums/urls.enum';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Product } from '../../shared/interfaces/product.interface';
 import { editServise } from '../../shared/service/services';
 import { ApiService } from '../../shared/service/backend.srv';
 @Component({
