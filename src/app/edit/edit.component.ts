@@ -29,10 +29,9 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let url = this.route.snapshot.url.join('/');
-    this.isEdit = url === Urls.Edit ? true : false;
+    this.isEdit = this.route.snapshot.url[0]?.path==='edit';
     console.log(this.isEdit);
-
+    console.log(this.route.snapshot.url)
     this.form = this.editService.editForm();
   }
 

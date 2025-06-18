@@ -1,10 +1,13 @@
 <div class="col">
-@for (item of products; track $index) {
-    <div class="prod">
-    <div class="name">{{item.name}}</div>
-    <div class="description">{{item.description}}</div>
-    <div class="date">{{item.date}}</div>
-    <button class="button" (click)="deleteProduct(item.id)">Удалить</button>
+  @for (item of products; track $index) {
+  <div class="prod">
+    <div class="name">{{ item.name }}</div>
+    <div class="description">{{ item.description }}</div>
+    <div class="date">{{ item.date }}</div>
+    <div>
+      <a routerLink="/edit/{{item.id}}" class="button">Редактировать</a>
+      <button class="button" (click)="deleteProduct(item.id)">Удалить</button>
     </div>
-}
+  </div>
+  }
 </div>

@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../shared/service/backend.srv';
 import { Product } from '../../shared/interfaces/product.interface';
+import { RouterModule } from '@angular/router';
+import { Urls } from '../../shared/enums/urls.enum';
+import id from '@angular/common/locales/id';
 
 @Component({
   selector: 'app-view',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './view.component.html',
   styleUrl: './view.component.scss',
   standalone: true,
 })
 export class ViewComponent implements OnInit {
   products: Product[] = [];
+Urls: any;
+id: any|string;
 
   constructor(private ApiService: ApiService) {}
 
