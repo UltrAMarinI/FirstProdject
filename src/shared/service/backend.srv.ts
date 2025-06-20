@@ -22,4 +22,8 @@ export class ApiService {
   deleteData(id: number): Observable<Product> { 
     return this.http.delete<Product>(`${this.apiUrl}/entities/${id}`)
   }
+
+  getOne(id:string|any): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/entities/${id}`)
+  }
 }

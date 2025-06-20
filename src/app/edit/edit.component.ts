@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Urls } from '../../shared/enums/urls.enum';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { editServise } from '../../shared/service/services';
 import { ApiService } from '../../shared/service/backend.srv';
@@ -15,6 +14,7 @@ import { ApiService } from '../../shared/service/backend.srv';
 export class EditComponent implements OnInit {
   isEdit = true;
   form!: FormGroup;
+  idParam: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +29,28 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isEdit = this.route.snapshot.url[0]?.path==='edit';
+    this.isEdit = this.route.snapshot.url[0]?.path === 'edit';
     console.log(this.isEdit);
-    console.log(this.route.snapshot.url)
+    console.log(this.route.snapshot.url);
+
     this.form = this.editService.editForm();
+
+    this.route.paramMap.subscribe((params) => {
+      this.idParam = params.get('id');
+      console.log(this.idParam);
+      if (this.idParam) {
+        this.editProductId();
+      }
+    });
+  }
+
+  editProductId() {
+    this.ApiService.getOne(this.idParam).subscribe((a) => {
+      console.log(a);
+      this.form.get('nameProduct')?.setValue(a.name);
+      this.form.get('descriptionProduct')?.setValue(a.description);
+      this.form.get('dateProduct')?.setValue(a.date);
+    });
   }
 
   editProduct() {
@@ -46,10 +64,10 @@ export class EditComponent implements OnInit {
 
   createProduct() {
     this.ApiService.postData({
-      name:  this.form.get('nameProduct')?.value,
-      description:  this.form.get('descriptionProduct')?.value,
-      date:  this.form.get('dateProduct')?.value
-    }).subscribe(res=>console.log('res', res));
+      name: this.form.get('nameProduct')?.value,
+      description: this.form.get('descriptionProduct')?.value,
+      date: this.form.get('dateProduct')?.value,
+    }).subscribe((res) => console.log('res', res));
   }
 
   submit() {
