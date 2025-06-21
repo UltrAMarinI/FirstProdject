@@ -54,12 +54,12 @@ export class EditComponent implements OnInit {
   }
 
   editProduct() {
-    console.log(
-      'редактирую',
-      this.form.get('nameProduct')?.value,
-      this.form.get('descriptionProduct')?.value,
-      this.form.get('dateProduct')?.value
-    );
+    this.ApiService.putData({
+      id: Number(this.idParam),
+      name: this.form.get('nameProduct')?.value,
+      description: this.form.get('descriptionProduct')?.value,
+      date: this.form.get('dateProduct')?.value,
+    }).subscribe((a) => console.log('Новые данные', a));
   }
 
   createProduct() {

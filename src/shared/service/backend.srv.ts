@@ -26,4 +26,8 @@ export class ApiService {
   getOne(id:string|any): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/entities/${id}`)
   }
+
+  putData(data:Product): Observable<Product>{
+    return this.http.put<Product>(`${this.apiUrl}/entities/${data.id}`, data)
+  }
 }
