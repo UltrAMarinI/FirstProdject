@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(236, 255, 255);
+  background-color: rgb(227, 255, 255);
   height: 100vh;
+  justify-content: center;
 }
 
 .prod {
@@ -47,4 +48,10 @@
   border-radius: 50px;
   border-color: aqua;
   margin-bottom: 20px;
+}
+
+.link {
+  color: #849c9d;
+  cursor: pointer;
+  text-decoration: none;
 }

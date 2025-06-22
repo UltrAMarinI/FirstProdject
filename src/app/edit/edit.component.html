@@ -17,7 +17,7 @@
     }
 
     <label>Дата</label>
-    <input type="date" formControlName="dateProduct"/>
+    <input type="date" formControlName="dateProduct" />
 
     @if(form.controls["dateProduct"].invalid &&
     form.controls["dateProduct"].touched){
@@ -30,6 +30,10 @@
       </button>
       <button class="button" type="button" (click)="clearForm()">
         Очистить
+      </button>
+
+      <button class="button" type="button"> 
+        <a routerLink="/view" class="link"> Главная </a>
       </button>
     </div>
   </div>

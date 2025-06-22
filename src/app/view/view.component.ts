@@ -12,26 +12,23 @@ import { RouterModule } from '@angular/router';
 })
 export class ViewComponent implements OnInit {
   products: Product[] = [];
-Urls: any;
-id: any|string;
 
   constructor(private ApiService: ApiService) {}
-
-  upDate() {
-    this.ApiService.getData().subscribe((a) => {
-      console.log(a);
-      this.products = a;
-    });
-  }
 
   ngOnInit(): void {
     this.upDate();
   }
 
+  upDate() {
+    this.ApiService.getData().subscribe((a) => {
+      this.products = a;
+    });
+  }
+
   deleteProduct(id: number | undefined): void {
     if (!id) return;
-    this.ApiService.deleteData(id).subscribe(()=>{
-        this.upDate();
+    this.ApiService.deleteData(id).subscribe(() => {
+      this.upDate();
     });
   }
 }

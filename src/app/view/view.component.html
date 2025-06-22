@@ -5,9 +5,14 @@
     <div class="description">{{ item.description }}</div>
     <div class="date">{{ item.date }}</div>
     <div>
-      <a routerLink="/edit/{{item.id}}" class="button">Редактировать</a>
+      <button class="button">
+        <a routerLink="/edit/{{ item.id }}" class="link">Редактировать</a>
+      </button>
       <button class="button" (click)="deleteProduct(item.id)">Удалить</button>
     </div>
   </div>
   }
+  <button class="button">
+    <a routerLink="/create" class="link">Создать продукт</a>
+  </button>
 </div>
