@@ -5,7 +5,7 @@ import { Urls } from '../shared/enums/urls.enum';
 
 export const routes: Routes = [
   { path: Urls.View, component: ViewComponent },
-  { path: Urls.Edit, component: EditComponent },
+  { path: `${Urls.Edit}/:id`, component: EditComponent },
   { path: Urls.Create, component: EditComponent },
   { path: '**', redirectTo: Urls.View },
 ];

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Urls } from '../../shared/enums/urls.enum';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { editServise } from '../../shared/service/services';
 import { ApiService } from '../../shared/service/backend.srv';
 @Component({
   selector: 'app-edit',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
   standalone: true,
@@ -15,6 +14,7 @@ import { ApiService } from '../../shared/service/backend.srv';
 export class EditComponent implements OnInit {
   isEdit = true;
   form!: FormGroup;
+  idParam: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,35 +22,41 @@ export class EditComponent implements OnInit {
     private ApiService: ApiService
   ) {}
 
-  onSubmit() {
-    if (this.form.valid) {
-      console.log(this.form.value);
-    }
+  ngOnInit(): void {
+    this.isEdit = this.route.snapshot.url[0]?.path === 'edit';
+    this.form = this.editService.editForm();
+
+    this.route.paramMap.subscribe((params) => {
+      this.idParam = params.get('id');
+      if (this.idParam) {
+        this.editProductId();
+      }
+    });
   }
 
-  ngOnInit(): void {
-    let url = this.route.snapshot.url.join('/');
-    this.isEdit = url === Urls.Edit ? true : false;
-    console.log(this.isEdit);
-
-    this.form = this.editService.editForm();
+  editProductId() {
+    this.ApiService.getOne(this.idParam).subscribe((a) => {
+      this.form.get('nameProduct')?.setValue(a.name);
+      this.form.get('descriptionProduct')?.setValue(a.description);
+      this.form.get('dateProduct')?.setValue(a.date);
+    });
   }
 
   editProduct() {
-    console.log(
-      'редактирую',
-      this.form.get('nameProduct')?.value,
-      this.form.get('descriptionProduct')?.value,
-      this.form.get('dateProduct')?.value
-    );
+    this.ApiService.putData({
+      id: Number(this.idParam),
+      name: this.form.get('nameProduct')?.value,
+      description: this.form.get('descriptionProduct')?.value,
+      date: this.form.get('dateProduct')?.value,
+    }).subscribe(() => {});
   }
 
   createProduct() {
     this.ApiService.postData({
-      name:  this.form.get('nameProduct')?.value,
-      description:  this.form.get('descriptionProduct')?.value,
-      date:  this.form.get('dateProduct')?.value
-    }).subscribe(res=>console.log('res', res));
+      name: this.form.get('nameProduct')?.value,
+      description: this.form.get('descriptionProduct')?.value,
+      date: this.form.get('dateProduct')?.value,
+    }).subscribe(() => {});
   }
 
   submit() {
@@ -59,7 +65,6 @@ export class EditComponent implements OnInit {
     } else {
       this.createProduct();
     }
-    console.log(this.form);
   }
 
   clearForm() {
