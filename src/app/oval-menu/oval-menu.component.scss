@@ -1,0 +1,36 @@
+.oval-menu {
+  color: rgb(201, 253, 255);
+  padding: 8px;
+  border-radius: 50px;
+  background-color: rgb(94, 147, 147);
+  display: flex;
+  justify-content: space-between;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.dropdown-button {
+  height: 40px;
+}
+
+.mr-10 {
+  margin-left: 15px;
+  margin-right: 10px;
+}
+
+.dropdown-list {
+  background-color: rgb(94, 147, 147);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: lighter;
+  margin-top: 10px;
+  color:rgb(201, 253, 255);
+  border-radius: 30px;
+}
+
+.item-sel{
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.fw-bold{
+  font-weight: bold;
+}

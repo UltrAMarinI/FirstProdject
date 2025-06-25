@@ -15,4 +15,5 @@
   <button class="button">
     <a routerLink="/create" class="link">Создать продукт</a>
   </button>
+  <app-oval-menu [array]="List" (selectedVal)="output($event)"></app-oval-menu>
 </div>
