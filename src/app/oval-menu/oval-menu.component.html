@@ -1,20 +1,16 @@
+<div class="title">{{ title }}</div>
 <div class="dropdown-button">
-  @if (!selected) {
-  <div class="oval-menu">
-    Выберите
-    <span class="mr-10" (click)="openMenu()">▼</span>
+  <div class="oval-menu" [ngClass]="{ 'open-menu': opened }">
+    @if (!selected) { Выберите } @else { Выбрано: {{ selected.title }}}
+    <span class="mr-10 click" (click)="openMenu($event)">▼</span>
   </div>
-  } @else {
-  <div class="oval-menu">
-    Выбрано: {{ selected.title }}
-    <span class="mr-10" (click)="openMenu()">▼</span>
+  @if(opened){
+  <div class="dropdown-list click">
+    @for ( item of array; track $index) {
+    <div class="item-sel" (click)="select(item)">
+      {{ item.title }}<span class="mr-10 fw-bold">{{ item.value }}</span>
+    </div>
+    }
   </div>
   }
-</div>
-<div class="dropdown-list">
-  @if(opened){ @for ( item of array; track $index) {
-  <div class="item-sel" (click)="select(item)">
-    {{ item.title }}<span class="mr-10 fw-bold">{{ item.value }}</span>
-  </div>
-  } }
 </div>

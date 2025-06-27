@@ -1,15 +1,21 @@
+.click {
+  cursor: pointer;
+}
+
 .oval-menu {
   color: rgb(201, 253, 255);
   padding: 8px;
-  border-radius: 50px;
+  border-radius: 30px;
   background-color: rgb(94, 147, 147);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .dropdown-button {
+  position: relative;
   height: 40px;
+  width: 200px;
 }
 
 .mr-10 {
@@ -18,19 +24,35 @@
 }
 
 .dropdown-list {
+  position: absolute;
+  top: 25px;
   background-color: rgb(94, 147, 147);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: lighter;
   margin-top: 10px;
-  color:rgb(201, 253, 255);
-  border-radius: 30px;
+  color: rgb(201, 253, 255);
+  border-radius: 0px 0px 18px 18px;
+  width: 200px;
 }
 
-.item-sel{
+.item-sel {
   padding: 5px;
   margin-left: 10px;
 }
 
-.fw-bold{
+.fw-bold {
   font-weight: bold;
+}
+
+.open-menu {
+  border-radius: 18px 18px 0px 0px;
+}
+
+.title {
+  display: flex;
+  justify-content: start;
+  margin-left: 15px;
+  margin-bottom: 8px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(94, 147, 147);
 }

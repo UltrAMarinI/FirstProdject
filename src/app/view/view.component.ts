@@ -19,6 +19,7 @@ export class ViewComponent implements OnInit {
     {value: '55', title: 'дом'},
     {value: '66', title: 'собака'}
   ]
+  titlePr: string = "Продукты"
 
   constructor(private ApiService: ApiService) {}
 
