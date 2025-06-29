@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../shared/service/backend.srv';
 import { Product } from '../../shared/interfaces/product.interface';
 import { RouterModule } from '@angular/router';
-import { OvalMenuComponent } from "../oval-menu/oval-menu.component";
+import { OvalMenuComponent } from '../oval-menu/oval-menu.component';
 import { List } from '../../shared/interfaces/ovalMenu.interface';
 
 @Component({
@@ -14,12 +14,17 @@ import { List } from '../../shared/interfaces/ovalMenu.interface';
 })
 export class ViewComponent implements OnInit {
   products: Product[] = [];
-  List: List[]=[
-    {value: '44', title: 'машина'},
-    {value: '55', title: 'дом'},
-    {value: '66', title: 'собака'}
-  ]
-  titlePr: string = "Продукты"
+  List: List[] = [
+    { value: '1', title: 'один' },
+    { value: '2', title: 'два' },
+    { value: '3', title: 'три' },
+    { value: '4', title: 'четыре' },
+    { value: '5', title: 'пять' },
+    { value: '6', title: 'шесть' },
+
+  ];
+  titlePr: string = 'Продукты';
+  filterArray: Product[] = [];
 
   constructor(private ApiService: ApiService) {}
 
@@ -30,6 +35,7 @@ export class ViewComponent implements OnInit {
   upDate() {
     this.ApiService.getData().subscribe((a) => {
       this.products = a;
+      this.filterArray = a;
     });
   }
 
@@ -40,7 +46,20 @@ export class ViewComponent implements OnInit {
     });
   }
 
-  output($event: List){
-    console.log($event)
+  output($event: List) {
+    console.log($event);
+    this.filterSel($event);
+  }
+
+  filterSel(sel: List) {
+    if (!sel) return;
+    else {
+      this.filterArray = this.products.filter((a) => {
+        if (a.id) {
+          const r = Number(sel.value) <= a.id;
+          return r;
+        } else return false;
+      });
+    }
   }
 }

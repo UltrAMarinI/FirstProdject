@@ -1,5 +1,14 @@
 <div class="col">
-  @for (item of products; track $index) {
+  <button class="button">
+    <a routerLink="/create" class="link">Создать продукт</a>
+  </button>
+  <app-oval-menu
+    [title]="titlePr"
+    [array]="List"
+    (selectedVal)="output($event)"
+  ></app-oval-menu>
+
+  @for (item of filterArray; track $index) {
   <div class="prod">
     <div class="name">{{ item.name }}</div>
     <div class="description">{{ item.description }}</div>
@@ -12,8 +21,4 @@
     </div>
   </div>
   }
-  <button class="button">
-    <a routerLink="/create" class="link">Создать продукт</a>
-  </button>
-  <app-oval-menu [title]="titlePr" [array]="List" (selectedVal)="output($event)"></app-oval-menu>
 </div>

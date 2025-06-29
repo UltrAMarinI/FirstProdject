@@ -33,11 +33,15 @@
   color: rgb(201, 253, 255);
   border-radius: 0px 0px 18px 18px;
   width: 200px;
+  max-height: 90px;
+  overflow-y: auto;
 }
 
 .item-sel {
   padding: 5px;
   margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .fw-bold {
